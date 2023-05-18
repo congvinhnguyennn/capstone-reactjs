@@ -1,7 +1,11 @@
 import axiosClient from "./axiosClient";
 
-export const showtimesAPI = async () => {
-  const {data} = await axiosClient.get("/QuanLyRap/LayThongTinLichChieuHeThongRap");
+export const showtimesAPI = async (maRap) => {
+  const {data} = await axiosClient.get("/QuanLyRap/LayThongTinLichChieuHeThongRap",{
+    params:{
+      maHeThongRap:maRap,
+    }
+  });
 
  return data
 }
@@ -14,7 +18,7 @@ export const bookingAPI = async (MaLichChieu) => {
   });
   return data
 };
-export const seatAPI=async()=>{
-  const {data} = await axiosClient.post("/QuanLyDatVe/DatVe");
+export const seatAPI=async(values)=>{
+  const {data} = await axiosClient.post("/QuanLyDatVe/DatVe",values);
   return data;
 }

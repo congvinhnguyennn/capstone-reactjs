@@ -7,7 +7,7 @@ function MovieDetails() {
   return (
     <div>
       <MovieInfo movieId={movieId}/>
-      <Showtimes movieId={movieId}/>
+      <Showtimes movieId={movieId} />
     </div>
   )
 }
