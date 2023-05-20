@@ -5,13 +5,15 @@ import { Form, notification } from "antd";
 import { apiUserLogin } from "../../../APIs/userAPI";
 import { Navigate,useSearchParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { userLogin } from "../../../Slices/customerSlice";
-// import { signin } from "../../../../Customer/slice/UserSlice"
+// import { adminLogin } from "../../../Slices/adminSlice";
+import { signin } from "../../../../Customer/slice/UserSlice"
 
 const AdminSignin = () => {
 
+
+
   const [form] = Form.useForm();
-  const { userAdmin, error } = useSelector((state) => state.userReducer);
+  const { user, error } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -37,7 +39,7 @@ const AdminSignin = () => {
       apiUserLogin(values)
         .then((res) => {
           console.log(res);
-          dispatch(userLogin(res.data));
+          dispatch(signin(values));
           notification.success({
             message: "Login successfully!",
           });
@@ -57,15 +59,11 @@ const AdminSignin = () => {
 
   const [searchParams,setSearchParams] =useSearchParams();
 
-  if (userAdmin === "quanTri") {
-    const { redirectTo } = searchParams;
-    if (redirectTo) {
-      setSearchParams({ redirectTo: "" });
-      return <Navigate to={redirectTo} />;
-    }
-    return <Navigate to="/admin" />;
+  if(user)
+  {
+    const url=searchParams.get("redirectUrl")|| "/admin";
+    return <Navigate to={url}/>
   }
-
 
   return (
     <Form form={form} onSubmitCapture={formik.handleSubmit}>
@@ -133,6 +131,8 @@ const AdminSignin = () => {
       </div>
     </Form>
   );
-};
 
+  
+
+};
 export default AdminSignin;

@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./Customer/layouts/MainLayout/MainLayout";
 import ProtectedRoute from "./Customer/routes/ProtectedRoute";
+import AdminProtectedRoute from "./Admin/Routes/AdminProtectRoute";
 import AuthLayout from "./Customer/layouts/AuthLayout/AuthLayout";
 import { Movies, Users, MovieEdit, AddMovie, AddUser, UserEdit, AdminSignin } from "./Admin/Pages/"
 import { AdminMainLayout, AdminSigninLayout } from "./Admin/Layouts/index";
@@ -45,7 +46,7 @@ function App() {
         </Route>
         
         
-        <Route path="/admin" element={<AdminMainLayout />} >
+        <Route path="/admin" element={<AdminProtectedRoute> <AdminMainLayout /> </AdminProtectedRoute> } >
           <Route path="/admin/movies" element={<Movies />} />
           <Route path="/admin/movies/add-movie" element={<AddMovie />} />
           <Route path="/admin/movies/edit/:movieId" element={<MovieEdit />} />

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { apiGetUserList, apiAddUser, apiUpdateUser, apiGetUserDetail, apiUserLogin } from '../APIs/userAPI';
+import { apiGetUserList, apiAddUser, apiUpdateUser, apiGetUserDetail } from '../APIs/userAPI';
 
 const initialState = {
     userInfo: {},
@@ -50,21 +50,21 @@ const getUserDetail = createAsyncThunk('user/detail', async (taiKhoan) => {
     }
 );
 
-export const userLogin = createAsyncThunk('userAdmin/login', async (values) => {
-    try {
-        const response = await apiUserLogin(values);
-        localStorage.setItem("userAdmin",JSON.stringify(response.data.content))
-        return response.data.content;
-    } catch (error) {
-        throw error.respone?.data?.content;
-    }
-    }
-);
+// export const userLogin = createAsyncThunk('user/login', async (values) => {
+//     try {
+//         const response = await apiUserLogin(values);
+//         localStorage.setItem("admin",JSON.stringify(response.data.content))
+//         return response.data.content;
+//     } catch (error) {
+//         throw error.respone?.data?.content;
+//     }
+//     }
+// );
 
 
 
 const customerSlice = createSlice({
-    name: 'customer',
+    name: 'user',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -125,26 +125,26 @@ const customerSlice = createSlice({
                 state.error = action.error.message;
             }
             );
-        builder
-            .addCase(userLogin.pending, (state) => {
-                state.status = 'loading';
-            }
-            )
-            .addCase(userLogin.fulfilled, (state, action) => {
-                localStorage.setItem("isAuthAdmin",JSON.stringify(true))
-                return {
-                    ...state,
-                    status: 'succeeded',
-                    admin: action.payload,
-                    isAuthAdmin:JSON.parse(localStorage.getItem("isAuthAdmin"))
-                }
-            }
-            )
-            .addCase(userLogin.rejected, (state, action) => {
-                state.status = 'failed';
-                state.error = action.error.message;
-            }
-            );
+        // builder
+        //     .addCase(userLogin.pending, (state) => {
+        //         state.status = 'loading';
+        //     }
+        //     )
+        //     .addCase(userLogin.fulfilled, (state, action) => {
+        //         localStorage.setItem("isAuthAdmin",JSON.stringify(true))
+        //         return {
+        //             ...state,
+        //             status: 'succeeded',
+        //             admin: action.payload,
+        //             isAuthAdmin:JSON.parse(localStorage.getItem("isAuthAdmin"))
+        //         }
+        //     }
+        //     )
+        //     .addCase(userLogin.rejected, (state, action) => {
+        //         state.status = 'failed';
+        //         state.error = action.error.message;
+        //     }
+        //     );
             
     }
 });
