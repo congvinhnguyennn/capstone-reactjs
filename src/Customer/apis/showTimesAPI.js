@@ -4,6 +4,7 @@ export const showtimesAPI = async (maRap) => {
   const {data} = await axiosClient.get("/QuanLyRap/LayThongTinLichChieuHeThongRap",{
     params:{
       maHeThongRap:maRap,
+      maNhom:"GP08"
     }
   });
 
