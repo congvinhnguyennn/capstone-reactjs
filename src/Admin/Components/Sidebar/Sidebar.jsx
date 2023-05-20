@@ -37,6 +37,14 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
+      {/* create a button back to customer page */}
+      <div className='h-19'>
+        <Link to='/' className='block text-sm whitespace-nowrap 
+        text-slate-700 text-center text-decoration-none'
+        >
+          <span className='ml-1 font-semibold text-xl'>Back to Customer Page</span>
+        </Link>
+      </div>
     </aside>
     
   )
