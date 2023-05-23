@@ -27,11 +27,11 @@ function Movies() {
   }, []);
 
   return (
-    <div className='container mt-5'>
+    <div className='container mt-5' id="lichChieu">
       <div className='row'>
         {movies.map(item=>{
           return (
-            <div key={item.maPhim} className="col-sm-4 mb-3">
+            <div key={item.maPhim} className="col-lg-6 col-xl-4 mb-3">
               <div className="card" style={{width: '25rem'}}>
                 <div className="card-top">
                   {!showVideo || showVideo !== item.maPhim ? (

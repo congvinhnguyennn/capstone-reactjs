@@ -5,6 +5,7 @@ import { APIlogin,APIsignup } from "../apis/userAPI";
 // async actions
 export const signin = createAsyncThunk("user/signin", async (values) => {
   try {
+    console.log(values);
     const data = await APIlogin(values);
     // Lưu thông tin user vào localStorage để giữ trạng thái đăng nhập
     localStorage.setItem("user", JSON.stringify(data.content));

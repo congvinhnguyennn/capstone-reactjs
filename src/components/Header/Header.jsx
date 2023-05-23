@@ -23,7 +23,7 @@ function Header() {
   <div className="collapse navbar-collapse d-flex justify-content-around" id="navbarText">
     <ul className="navbar-nav ">
       <li className="nav-item active">
-        <a className="nav-link" href="#">Lịch chiếu</a>
+        <a className="nav-link" href="#lichChieu">Lịch chiếu</a>
       </li>
       <li className="nav-item">
         <a className="nav-link" href="#">Cụm rạp</a>
@@ -37,7 +37,7 @@ function Header() {
     </ul>
    
   </div>
-  <div className='collapse navbar-collapse justify-content-center'>
+  <div className=' navbar-collapse justify-content-center'>
     <ul className='navbar-nav'>
         {isAuth ? (
           <>
