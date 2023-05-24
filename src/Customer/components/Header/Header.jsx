@@ -1,12 +1,13 @@
 import React from "react";
-import styles from "./Header.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "./../../slice/UserSlice";
 import { useNavigate } from "react-router-dom";
+
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = React.useState(false);
   const currentUser = useSelector((state) => state.userReducer.user);
   const { isAuth } = useSelector((state) => state.userReducer);
   const handleLogout = () => {
@@ -16,134 +17,19 @@ function Header() {
 
   return (
     <header className="header">
-      {/* <nav className="navbar navbar-expand-lg navbar-dark bg-dark text-white justify-content-around">
-        <div
-          onClick={() => {
-            navigate(`/`);
-          }}
-          className="collapse navbar-collapse justify-content-around"
-        >
-          <a className="navbar-brand  navBarTest opacity-100" href="#">
-            Movies
-          </a>
-        </div>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarText"
-          aria-controls="navbarText"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
-        <div
-          className="collapse navbar-collapse d-flex justify-content-around"
-          id="navbarText"
-        >
-          <ul className="navbar-nav">
-            <li className="nav-item active ">
-              <a className="nav-link" href="#">
-                Lịch chiếu
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Cụm rạp
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Tin tức
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Ứng dụng
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="collapse navbar-collapse justify-content-center">
-          <ul className="navbar-nav">
-            {isAuth ? (
-              <>
-                <li className="nav-item py-1">
-                  Xin chào, {currentUser && currentUser.taiKhoan}
-                </li>
-                <li className={styles.divider}></li>
-                <li>
-                  <button
-                    className="btn btn-danger nav-item"
-                    onClick={handleLogout}
-                  >
-                    Đăng xuất
-                  </button>
-                </li>
-              </>
-            ) : (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/signin">
-                    Đăng nhập
-                  </Link>
-                </li>
-                <li className={styles.divider}></li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/signup">
-                    Đăng kí
-                  </Link>
-                </li>
-              </>
-            )}
-          </ul>
-        </div>
-      </nav> */}
-
-      <nav className="flex justify-between items-center py-4 bg-gray-800">
-        <div className="flex items-center">
-          <Link
-            className="text-xl font-bold text-white uppercase text-decoration-none ml-20"
-            to="/"
-          >
-            Movies
+      <nav class="bg-gray-900 w-full z-20 top-0 left-0 h-[150px]">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          <Link className="navbar-brand" to="/">
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Movies</span>
           </Link>
-        </div>
-        <div className="text-center">
-          <ul className="flex justify-between translate-y-[35%]">
-            <li className="mx-4">
-              <a href="#" className="text-white text-decoration-none">
-                Lịch chiếu
-              </a>
-            </li>
-            <li className="mx-4">
-              <a href="#" className="text-white text-decoration-none">
-                Cụm rạp
-              </a>
-            </li>
-            <li className="mx-4">
-              <a href="#" className="text-white text-decoration-none">
-                Tin tức
-              </a>
-            </li>
-            <li className="mx-4">
-              <a href="#" className="text-white text-decoration-none">
-                Ứng dụng
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="flex items-center">
-          <div className="ml-6">
+          <div class="flex md:order-2">
             {isAuth ? (
               <>
-                <span className="text-white mr-4">
+                <span className="navbar-text me-3 text-white">
                   Xin chào, {currentUser && currentUser.taiKhoan}
                 </span>
                 <button
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-decoration-none"
+                  className="btn btn-danger"
                   onClick={handleLogout}
                 >
                   Đăng xuất
@@ -151,20 +37,34 @@ function Header() {
               </>
             ) : (
               <>
-                <Link
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-decoration-none"
-                  to="/signin"
-                >
+                <Link className="btn btn-primary me-2" to="/signin">
                   Đăng nhập
                 </Link>
-                <Link
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4 text-decoration-none"
-                  to="/signup"
-                >
+                <Link className="btn btn-primary" to="/signup">
                   Đăng kí
                 </Link>
               </>
             )}
+            <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false" onClick={() => setIsOpen(!isOpen)}>
+              <span class="sr-only">Open main menu</span>
+              <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+            </button>
+          </div>
+          <div class={`items-center justify-between hidden w-full md:flex md:w-auto md:order-1 ${isOpen ? "block" : ""}`} id="navbar-sticky">
+            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-900">
+              <li>
+                <a href="#lichChieu" class="text-decoration-none block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-white md:p-0" aria-current="page">Lịch chiếu</a>
+              </li>
+              <li>
+                <a href="#" class="text-decoration-none block py-2 pl-3 pr-4 text-white rounded md:hover:bg-transparent md:hover:text-white md:p-0">Cụm rạp</a>
+              </li>
+              <li>
+                <a href="#" class="text-decoration-none block py-2 pl-3 pr-4 text-white rounded md:hover:bg-transparent md:hover:text-white md:p-0 ">Tin tức</a>
+              </li>
+              <li>
+                <a href="#" class="text-decoration-none block py-2 pl-3 pr-4 text-white rounded md:hover:bg-transparent md:hover:text-white md:p-0">Ứng dụng</a>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>

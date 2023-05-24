@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { showtimesAPI } from '../../apis/showTimesAPI';
 import styles from './Showtimes.module.scss';
 import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 function Showtimes({ movieId }) {
+  const navigate=useNavigate()
   const values=["CGV","CineStar","Galaxy","LotteCinima","MegaGS","BHDStar"]
   const [booking, setBooking] = useState([]);
    const [booking1, setBooking1] = useState([]);
@@ -55,7 +57,8 @@ const showtimesList = filteredBooking.map((showtime) => (
     <p>Địa chỉ: {showtime.diaChi}</p>
     <p>Ngày chiếu: {showtime.ngayChieu}</p>
     {/* Thêm các thông tin về suất chiếu ở đây */}
-    <Link to={`/booking/${showtime.maLichChieu}`}>Đặt vé</Link>
+    
+    <button className='btn btn-success' onClick={()=>{navigate(`/booking/${showtime.maLichChieu}`)}}>Đặt vé</button>
   </div>
 ));
 console.log(booking);
@@ -69,7 +72,7 @@ console.log(booking);
              {click}
             </div>
           </div>
-          <div className="col-8">
+          <div className="col-8" id='lichChieu'>
             {showtimesList}
           </div>
         </div>
