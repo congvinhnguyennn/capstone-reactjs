@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Showtimes({ movieId }) {
   const navigate=useNavigate()
-  const values=["CGV","CineStar","Galaxy","LotteCinima","MegaGS","BHDStar"]
+  const values=["BHDStar","CineStar","MegaGS","Galaxy","CGV","LotteCinima"]
   const [booking, setBooking] = useState([]);
    const [booking1, setBooking1] = useState([]);
   const getBooking = async (value) => {
@@ -17,7 +17,7 @@ function Showtimes({ movieId }) {
       console.log(error);
     }
   };
-   const getBooking1 = async (value) => {
+  const getBooking1 = async (value) => {
     try {
       const data = await showtimesAPI(value);
       setBooking1(data.content);

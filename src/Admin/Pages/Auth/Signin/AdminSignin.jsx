@@ -117,7 +117,7 @@ const AdminSignin = () => {
           Remember me
         </label>
       </div>
-      {error&& <p>{error}</p>}
+      {error && <div style={{ color: "#fa0000", marginTop: "5px" }}>{error}</div>}
       <div className="text-center">
         <button
           type="submit"

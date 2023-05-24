@@ -54,6 +54,7 @@
     "sass": "^1.62.1",
     "scss": "^0.2.4",
     "styled-components": "^5.3.10",
+    "tailwind": "^4.0.0",
     "templates": "^1.2.9",
     "use-history": "^1.4.1",
     "web-vitals": "^2.1.4",

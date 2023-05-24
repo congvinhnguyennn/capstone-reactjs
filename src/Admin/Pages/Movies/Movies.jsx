@@ -385,8 +385,8 @@ const Movies = () => {
                   <input
                     type="search"
                     className="peer cursor-pointer relative z-10 h-12 w-12 rounded-full 
-              border bg-transparent pl-12 outline-none focus:w-full 
-              focus:cursor-text focus:border-black focus:pl-16 focus:pr-4 inputSearch"
+                      border bg-transparent pl-12 outline-none focus:w-full 
+                      focus:cursor-text focus:border-black focus:pl-16 focus:pr-4 inputSearch"
                     onSearch={(value) => {
                       setSearchValue(value);
                     }}
